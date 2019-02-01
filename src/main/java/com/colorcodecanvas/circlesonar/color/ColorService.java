@@ -8,7 +8,7 @@ public class ColorService {
   public String guessColorByAnimal(String animal) {
     String color;
     switch (animal) {
-      case "lion":
+          case "lion":
         color = "yellow";
         break;
       case "dog":
