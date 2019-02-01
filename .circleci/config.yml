@@ -35,9 +35,3 @@ jobs:
               -Dsonar.pullrequest.key=3 \
               -Dsonar.pullrequest.branch=sg-000-sonar-publish-results \
               -Dsonar.pullrequest.github.repository=circlesonar
-
-      - store_test_results:
-          path: target/surefire-reports
-
-      - store_artifacts:
-          path: target/circlesonar.jar
