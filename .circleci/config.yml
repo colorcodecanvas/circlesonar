@@ -32,8 +32,8 @@ jobs:
               -Dsonar.host.url=https://sonarcloud.io \
               -Dsonar.login=218a21bec532782bc07312d4ff869ea329e21171 \
               -Dsonar.pullrequest.base=master \
-              -Dsonar.pullrequest.key=2 \
-              -Dsonar.pullrequest.branch=sg-000-publish-to-sonar \
+              -Dsonar.pullrequest.key=3 \
+              -Dsonar.pullrequest.branch=sg-000-sonar-publish-results \
               -Dsonar.pullrequest.github.repository=colorcodecanvas_circlesonar
 
       - store_test_results:
