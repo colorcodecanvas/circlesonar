@@ -10,6 +10,6 @@ class ColorServiceSpec extends Specification {
     def guessedColor = service.guessColorByAnimal('lion')
 
     then:
-    guessedColor == 'red'
+    guessedColor == 'yellow'
   }
 }

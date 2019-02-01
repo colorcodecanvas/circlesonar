@@ -1,17 +1,24 @@
 package com.colorcodecanvas.circlesonar.color;
 
-import static io.vavr.API.$;
-import static io.vavr.API.Case;
-import static io.vavr.API.Match;
+
+import java.util.Optional;
 
 public class ColorService {
   public String guessColorByAnimal(String animal) {
-    return Match(animal).of(
-      Case($("lion"), "yellow"),
-      Case($("dog"), "black"),
-      Case($("cat"), "blue"),
-      Case($("elephant"), "grey"),
-      Case($(), "white")
-    );
+    String color;
+    switch (animal) {
+      case "lion":
+        color = "yellow";
+        break;
+      case "dog":
+        color = "black";
+        break;
+      case "cat":
+        color = "blue";
+        break;
+      default:
+        color = "white";
+    }
+    return color;
   }
 }
