@@ -2,6 +2,7 @@ package com.colorcodecanvas.circlesonar.color;
 
 
 import java.util.Optional;
+import java.util.Date;
 
 public class ColorService {
   public String guessColorByAnimal(String animal) {
