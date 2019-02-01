@@ -34,7 +34,7 @@ jobs:
               -Dsonar.pullrequest.base=master \
               -Dsonar.pullrequest.key=2 \
               -Dsonar.pullrequest.branch=sg-000-publish-to-sonar \
-              -Dsonar.pullrequest.github.repository=circlesonar
+              -Dsonar.pullrequest.github.repository=colorcodecanvas_circlesonar
 
       - store_test_results:
           path: target/surefire-reports
