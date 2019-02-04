@@ -15,6 +15,9 @@ public class ColorService {
       case "cat":
         color = "blue";
         break;
+      case "owl":
+        color = "brown";
+        break;
       default:
         color = "white";
     }
