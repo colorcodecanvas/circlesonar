@@ -1,4 +1,5 @@
-#!/bin/sh
+#! /bin/sh
+
 if [ "$CIRCLE_BRANCH" == "master" ]; then
   mvn sonar:sonar \
     -Dsonar.projectKey=colorcodecanvas_circlesonar \
