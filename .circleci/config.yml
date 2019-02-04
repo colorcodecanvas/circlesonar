@@ -7,18 +7,19 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-          key: circlesonar-{{ checksum "pom.xml" }}
+        key: circlesonar-{{ checksum "pom.xml" }}
       - run: mvn dependency:go-offline
       - save_cache:
-          paths:
-            - ~/.m2
-          key: circlesonar-{{ checksum "pom.xml" }}
+        paths:
+          - ~/.m2
+        key: circlesonar-{{ checksum "pom.xml" }}
       - run:
-          command: |
-            echo Running tests
-            mvn clean test
-
-            echo Publishing results to sonar
-            .circleci/sonar_publisher.sh
+        command: |
+          echo Running tests
+          set +e
+          mvn clean test
+      - run:
+        echo Publishing results to sonar
+        .circleci/sonar_publisher.sh
 
 
