@@ -12,7 +12,7 @@ jobs:
       - save_cache:
           paths:
             - ~/.m2
-        key: circlesonar-{{ checksum "pom.xml" }}
+          key: circlesonar-{{ checksum "pom.xml" }}
       - run:
           command: |
             echo Running tests
