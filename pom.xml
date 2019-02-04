@@ -29,6 +29,7 @@
     <jacoco-reports-path>${project.build.directory}/jacoco-reports</jacoco-reports-path>
     <jacoco-ut-path>${jacoco-reports-path}/unit-tests</jacoco-ut-path>
     <jacoco-ut-exec>${jacoco-ut-path}/jacoco.exec</jacoco-ut-exec>
+    <sonar-maven-plugin.version>3.6.0.1398</sonar-maven-plugin.version>
     <sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
     <sonar.jacoco.reportPaths>${jacoco-ut-exec}</sonar.jacoco.reportPaths>
   </properties>
@@ -37,6 +38,11 @@
     <finalName>${final-name}</finalName>
     <sourceDirectory>src/main/java</sourceDirectory>
     <plugins>
+      <plugin>
+        <groupId>org.sonarsource.scanner.maven</groupId>
+        <artifactId>sonar-maven-plugin</artifactId>
+        <version>${sonar-maven-plugin.version}</version>
+      </plugin>
       <plugin>
         <groupId>org.codehaus.gmavenplus</groupId>
         <artifactId>gmavenplus-plugin</artifactId>
