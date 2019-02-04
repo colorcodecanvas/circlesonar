@@ -8,7 +8,8 @@ if [ "$CIRCLE_BRANCH" == "master" ]; then
     -Dsonar.login=218a21bec532782bc07312d4ff869ea329e21171
 else
   echo circle ci master commit head bug fix defined in https://community.sonarsource.com/t/code-is-empty-on-pull-request-reviews/822
-  printenv
+  echo ${CI_PULL_REQUEST}
+  echo "testing ${CI_PULL_REQUEST##*/}"
   git fetch --all
   git branch -D master
   git rev-parse origin/master
