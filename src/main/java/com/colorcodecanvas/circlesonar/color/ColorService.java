@@ -13,6 +13,12 @@ public class ColorService {
       case "cat":
         color = "blue";
         break;
+      case "owl":
+        color = "brown";
+        break;
+      case "whale":
+        color = "blue";
+        break;
       default:
         color = "white";
     }
