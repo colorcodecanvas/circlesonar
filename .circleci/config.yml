@@ -38,8 +38,8 @@ jobs:
               -Dsonar.pullrequest.base=master \
               -Dsonar.pullrequest.key=${CI_PULL_REQUEST##*/} \
               -Dsonar.pullrequest.branch="$CIRCLE_BRANCH" \
-              -Dsonar.pullrequest.provider=github
-              -Dsonar.pullrequest.github.repository="$CIRCLE_PROJECT_REPONAME"
+              -Dsonar.pullrequest.provider=github \
+              -Dsonar.pullrequest.github.repository="$CIRCLE_PROJECT_REPONAME" \
               -Dsonar.pullrequest.github.endpoint=https://api.github.com/
 
 
