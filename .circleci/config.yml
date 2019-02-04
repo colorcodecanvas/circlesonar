@@ -24,6 +24,7 @@ jobs:
             git rev-parse origin/master
 
             echo Publishing results to sonar
+            pwd
             ./sonar_publisher.sh
 
 
