@@ -18,11 +18,6 @@ jobs:
             echo Running tests
             mvn clean test
 
-            echo circle ci master commit head bug fix defined in https://community.sonarsource.com/t/code-is-empty-on-pull-request-reviews/822
-            git fetch --all
-            git branch -D master
-            git rev-parse origin/master
-
             echo Publishing results to sonar
             .circleci/sonar_publisher.sh
 
