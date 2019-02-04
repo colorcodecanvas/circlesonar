@@ -16,7 +16,6 @@ jobs:
       - run:
           command: |
             echo Running tests
-            set +e
             mvn clean test
       - run: .circleci/sonar_publisher.sh
 
