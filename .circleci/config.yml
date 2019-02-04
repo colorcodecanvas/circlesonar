@@ -25,6 +25,7 @@ jobs:
 
             echo Publishing results to sonar
             pwd
+            ls
             ./sonar_publisher.sh
 
 
