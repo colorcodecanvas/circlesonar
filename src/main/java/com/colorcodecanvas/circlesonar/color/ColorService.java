@@ -18,6 +18,9 @@ public class ColorService {
       case "owl":
         color = "brown";
         break;
+      case "polar bear":
+        color = "cyan";
+        break;
       default:
         color = "white";
     }
