@@ -79,7 +79,6 @@
             </goals>
             <configuration>
               <destFile>${jacoco-ut-exec}</destFile>
-              <!--<propertyName>surefireArgLine</propertyName>-->
             </configuration>
           </execution>
           <execution>
