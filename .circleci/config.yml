@@ -24,8 +24,6 @@ jobs:
             git rev-parse origin/master
 
             echo Publishing results to sonar
-            pwd
-            ls
-            ./sonar_publisher.sh
+            .circleci/sonar_publisher.sh
 
 
