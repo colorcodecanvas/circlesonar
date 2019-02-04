@@ -13,12 +13,7 @@ jobs:
           paths:
             - ~/.m2
           key: circlesonar-{{ checksum "pom.xml" }}
-      - run:
-          command: |
-            echo Running tests
-            mvn clean test
-
-            echo Publishing results to sonar
-            .circleci/sonar_publisher.sh
+      - run: mvn clean test
+      - run: .circleci/sonar_publisher.sh
 
 
