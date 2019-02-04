@@ -14,6 +14,7 @@
   </parent>
 
   <properties>
+    <final-name>${project.artifactId}</final-name>
     <java.version>1.8</java.version>
     <spock-spring.version>1.1-groovy-2.4</spock-spring.version>
     <spock-core.version>1.1-groovy-2.4</spock-core.version>
@@ -22,8 +23,80 @@
     <maven.compiler.source>${java.version}</maven.compiler.source>
     <maven.compiler.target>${java.version}</maven.compiler.target>
     <gmavenplus-plugin.version>1.5</gmavenplus-plugin.version>
+    <maven-surefire-plugin.version>2.18.1</maven-surefire-plugin.version>
     <jacoco-maven-plugin.version>0.8.2</jacoco-maven-plugin.version>
+
+    <jacoco-reports-path>${project.build.directory}/jacoco-reports</jacoco-reports-path>
+    <jacoco-ut-path>${jacoco-reports-path}/unit-tests</jacoco-ut-path>
+    <jacoco-ut-exec>${jacoco-ut-path}/jacoco.exec</jacoco-ut-exec>
+    <sonar-maven-plugin.version>3.6.0.1398</sonar-maven-plugin.version>
+    <sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
+    <sonar.jacoco.reportPaths>${jacoco-ut-exec}</sonar.jacoco.reportPaths>
   </properties>
+
+  <build>
+    <finalName>${final-name}</finalName>
+    <sourceDirectory>src/main/java</sourceDirectory>
+    <plugins>
+      <plugin>
+        <groupId>org.sonarsource.scanner.maven</groupId>
+        <artifactId>sonar-maven-plugin</artifactId>
+        <version>${sonar-maven-plugin.version}</version>
+      </plugin>
+      <plugin>
+        <groupId>org.codehaus.gmavenplus</groupId>
+        <artifactId>gmavenplus-plugin</artifactId>
+        <version>${gmavenplus-plugin.version}</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>addTestSources</goal>
+              <goal>testCompile</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>${maven-surefire-plugin.version}</version>
+        <configuration>
+          <includes>
+            <include>**/*Spec.*</include>
+          </includes>
+        </configuration>
+      </plugin>
+      <plugin>
+        <!--https://www.petrikainulainen.net/programming/maven/creating-code-coverage-reports-for-unit-and-integration-tests-with-the-jacoco-maven-plugin/-->
+        <groupId>org.jacoco</groupId>
+        <artifactId>jacoco-maven-plugin</artifactId>
+        <version>${jacoco-maven-plugin.version}</version>
+        <executions>
+          <execution>
+            <id>pre-unit-test</id>
+            <goals>
+              <goal>prepare-agent</goal>
+            </goals>
+            <configuration>
+              <destFile>${jacoco-ut-exec}</destFile>
+              <!--<propertyName>surefireArgLine</propertyName>-->
+            </configuration>
+          </execution>
+          <execution>
+            <id>post-unit-test</id>
+            <phase>test</phase>
+            <goals>
+              <goal>report</goal>
+            </goals>
+            <configuration>
+              <dataFile>${jacoco-ut-exec}</dataFile>
+              <outputDirectory>${jacoco-ut-path}</outputDirectory>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
 
   <dependencies>
     <dependency>
