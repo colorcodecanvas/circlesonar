@@ -1,8 +1,10 @@
 package com.colorcodecanvas.circlesonar.color;
 
+import java.util.Optional;
+
 public class ColorService {
   public String guessColorByAnimal(String animal) {
-    String color;
+        String color;
     switch (animal) {
       case "lion":
         color = "yellow";
@@ -11,10 +13,10 @@ public class ColorService {
         color = "black";
         break;
       case "cat":
-        color = "blue";
-        break;
-      case "owl":
         color = "brown";
+        break;
+      case "whale":
+        color = "blue";
         break;
       default:
         color = "white";
