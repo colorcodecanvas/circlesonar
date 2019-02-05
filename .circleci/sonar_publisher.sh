@@ -35,5 +35,5 @@ if [ $is_master ] || [ $is_pr ]; then
   mvn clean test
   $is_master && analyze_master || analyze_pr
 else
-  echo "Skipping"
+  echo "Skipping CI for non master or non PR branch - $CIRCLE_BRANCH"
 fi
