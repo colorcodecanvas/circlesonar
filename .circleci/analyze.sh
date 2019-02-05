@@ -28,7 +28,6 @@ analyze_pr() {
   $PR_CODE_ANALYSIS_CMD
 }
 
-CIRCLE_BRANCH=master
 if [ "$CIRCLE_BRANCH" == "master" ]; then is_master=$TRUE; else is_master=$FALSE; fi;
 if [ -z ${CI_PULL_REQUEST+x} ]; then is_pr=$FALSE; else is_pr=$TRUE; fi
 if [ $is_master -eq $TRUE -o $is_pr -eq $TRUE ]; then
