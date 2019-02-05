@@ -1,11 +1,13 @@
 #! /bin/bash
 
+TRUE=0
+FALSE=1
+
 MASTER_CODE_ANALYSIS_CMD="mvn sonar:sonar \
     -Dsonar.projectKey=colorcodecanvas_circlesonar \
     -Dsonar.organization=colorcodecanvas \
     -Dsonar.host.url=https://sonarcloud.io \
     -Dsonar.login=218a21bec532782bc07312d4ff869ea329e21171"
-
 
 PR_CODE_ANALYSIS_CMD="$MASTER_CODE_ANALYSIS_CMD \
     -Dsonar.pullrequest.base=master \
@@ -26,11 +28,12 @@ analyze_pr() {
   $PR_CODE_ANALYSIS_CMD
 }
 
-if [ "$CIRCLE_BRANCH" == "master" ]; then is_master=1; else is_master=0; fi;
-if [ -z ${CI_PULL_REQUEST+x} ]; then is_pr=0; else is_pr=1; fi
-if [ $is_master -eq 1 -o $is_pr -eq 1 ]; then
+CIRCLE_BRANCH=master
+if [ "$CIRCLE_BRANCH" == "master" ]; then is_master=$TRUE; else is_master=$FALSE; fi;
+if [ -z ${CI_PULL_REQUEST+x} ]; then is_pr=$FALSE; else is_pr=$TRUE; fi
+if [ $is_master -eq $TRUE -o $is_pr -eq $TRUE ]; then
   mvn clean test
-  $is_master && analyze_master || analyze_pr
+  [[ $is_master -eq $TRUE ]] && analyze_master || analyze_pr
 else
   echo "Skipping CI for non master or non PR branch - $CIRCLE_BRANCH"
 fi
