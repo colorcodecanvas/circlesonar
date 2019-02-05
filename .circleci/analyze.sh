@@ -18,6 +18,7 @@ PR_CODE_ANALYSIS_CMD="$MASTER_CODE_ANALYSIS_CMD \
     -Dsonar.pullrequest.github.endpoint=https://api.github.com/"
 
 analyze_master() {
+  mvn clean test
   $MASTER_CODE_ANALYSIS_CMD
 }
 
@@ -25,13 +26,13 @@ analyze_pr() {
   git fetch --all
   git branch -D master
   git rev-parse origin/master
+  mvn clean test
   $PR_CODE_ANALYSIS_CMD
 }
 
 if [ "$CIRCLE_BRANCH" == "master" ]; then is_master=$TRUE; else is_master=$FALSE; fi;
 if [ -z ${CI_PULL_REQUEST+x} ]; then is_pr=$FALSE; else is_pr=$TRUE; fi
 if [ $is_master -eq $TRUE -o $is_pr -eq $TRUE ]; then
-  mvn clean test
   [[ $is_master -eq $TRUE ]] && analyze_master || analyze_pr
 else
   echo "Skipping CI for non master or non PR branch - $CIRCLE_BRANCH"
