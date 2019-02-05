@@ -17,6 +17,10 @@ PR_CODE_ANALYSIS_CMD="$MASTER_CODE_ANALYSIS_CMD \
     -Dsonar.pullrequest.github.repository=$CIRCLE_PROJECT_REPONAME \
     -Dsonar.pullrequest.github.endpoint=https://api.github.com/"
 
+BRANCH_CODE_ANALYSIS_CMD="$MASTER_CODE_ANALYSIS_CMD \
+    -Dsonar.branch.name=$CIRCLE_BRANCH \
+    -Dsonar.branch.target=master"
+
 analyze_master() {
   mvn clean test
   $MASTER_CODE_ANALYSIS_CMD
@@ -30,10 +34,20 @@ analyze_pr() {
   $PR_CODE_ANALYSIS_CMD
 }
 
+analyze_branch() {
+  git fetch --all
+  git branch -D master
+  git rev-parse origin/master
+  mvn clean test
+  $BRANCH_CODE_ANALYSIS_CMD
+}
 if [ "$CIRCLE_BRANCH" == "master" ]; then is_master=$TRUE; else is_master=$FALSE; fi;
-if [ -z ${CI_PULL_REQUEST+x} ]; then is_pr=$FALSE; else is_pr=$TRUE; fi
-if [ $is_master -eq $TRUE -o $is_pr -eq $TRUE ]; then
-  [[ $is_master -eq $TRUE ]] && analyze_master || analyze_pr
-else
-  echo "Skipping CI for non master or non PR branch - $CIRCLE_BRANCH"
-fi
+
+[[ $is_master -eq $TRUE ]] && analyze_master || analyze_branch
+
+#if [ -z ${CI_PULL_REQUEST+x} ]; then is_pr=$FALSE; else is_pr=$TRUE; fi
+#if [ $is_master -eq $TRUE -o $is_pr -eq $TRUE ]; then
+#  [[ $is_master -eq $TRUE ]] && analyze_master || analyze_pr
+#else
+#  echo "Skipping CI for non master or non PR branch - $CIRCLE_BRANCH"
+#fi
