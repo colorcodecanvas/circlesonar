@@ -1,8 +1,5 @@
 #! /bin/bash
 
-CIRCLE_BRANCH="something"
-CI_PULL_REQUEST="pr/1"
-
 MASTER_CODE_ANALYSIS_CMD="mvn sonar:sonar \
     -Dsonar.projectKey=colorcodecanvas_circlesonar \
     -Dsonar.organization=colorcodecanvas \
