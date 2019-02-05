@@ -33,7 +33,7 @@ if [ "$CIRCLE_BRANCH" == "master" ]; then is_master=$TRUE; else is_master=$FALSE
 if [ -z ${CI_PULL_REQUEST+x} ]; then is_pr=$FALSE; else is_pr=$TRUE; fi
 if [ $is_master -eq $TRUE -o $is_pr -eq $TRUE ]; then
   mvn clean test
-   [[ $is_master -eq $TRUE ]] && analyze_master || analyze_pr
+  [[ $is_master -eq $TRUE ]] && analyze_master || analyze_pr
 else
   echo "Skipping CI for non master or non PR branch - $CIRCLE_BRANCH"
 fi
