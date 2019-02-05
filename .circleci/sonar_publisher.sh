@@ -26,9 +26,9 @@ analyze_pr() {
   $PR_CODE_ANALYSIS_CMD
 }
 
-if [ "$CIRCLE_BRANCH" == "master" ]; then is_master=true; else is_master=false; fi;
-if [ -z $CI_PULL_REQUEST ]; then is_pr=false; else is_pr=true; fi
-if [ $is_master ] || [ $is_pr ]; then
+if [ "$CIRCLE_BRANCH" == "master" ]; then is_master=1; else is_master=0; fi;
+if [ -z ${CI_PULL_REQUEST+x} ]; then is_pr=1; else is_pr=0; fi
+if [ $is_master eq 1 -o $is_pr eq 1 ]; then
   mvn clean test
   $is_master && analyze_master || analyze_pr
 else
