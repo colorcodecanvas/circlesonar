@@ -19,7 +19,7 @@ public class ColorService {
         color = "blue";
         break;
       default:
-        color = "white";
+        color = "cyan";
     }
     return color;
   }
