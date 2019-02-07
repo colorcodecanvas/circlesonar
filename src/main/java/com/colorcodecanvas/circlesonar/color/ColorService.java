@@ -16,7 +16,7 @@ public class ColorService {
         color = "brown";
         break;
       case "whale":
-        color = "blue";
+        color = "blueeeeee";
         break;
       default:
         color = "cyan";
