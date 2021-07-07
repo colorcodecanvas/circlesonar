@@ -18,7 +18,6 @@ PR_CODE_ANALYSIS_CMD="$MASTER_CODE_ANALYSIS_CMD \
     -Dsonar.pullrequest.github.endpoint=https://api.github.com/"
 
 analyze_master() {
-  mvn clean test
   $MASTER_CODE_ANALYSIS_CMD
 }
 
@@ -26,7 +25,6 @@ analyze_pr() {
   git fetch --all
   git branch -D master
   git rev-parse origin/master
-  mvn clean test
   $PR_CODE_ANALYSIS_CMD
 }
 

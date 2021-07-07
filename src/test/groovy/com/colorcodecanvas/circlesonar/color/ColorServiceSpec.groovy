@@ -12,4 +12,12 @@ class ColorServiceSpec extends Specification {
     then:
     guessedColor == 'yellow'
   }
+
+  def "guess color for a person with whale as favorite animal"() {
+    when:
+    def guessedColor = service.guessColorByAnimal('whale')
+
+    then:
+    guessedColor == 'blueeeeee'
+  }
 }
